@@ -31,7 +31,7 @@ const Cheklist = () => {
   };
 
   const TambahData = async (e) => {
-    await axios.post('http://94.74.86.174:8080/api/register', {
+    await axios.post('http://94.74.86.174:8080/api/checklist', {
     name: tambahData.name 
    },
    {
@@ -40,6 +40,7 @@ const Cheklist = () => {
     },
   }
    );
+   console.log('berhasil')
   };
 
   return (
