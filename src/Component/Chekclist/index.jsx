@@ -31,16 +31,15 @@ const Cheklist = () => {
   };
 
   const TambahData = async (e) => {
-    const response = await axios.post("http://94.74.86.174:8080/api/checklist",
-    {
-      name: tambahData.name,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      
-    }
-  );
-  console.log(response.data);
+    await axios.post('http://94.74.86.174:8080/api/register', {
+    name: tambahData.name 
+   },
+   {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+   );
   };
 
   return (
