@@ -1,0 +1,71 @@
+.bg-login {
+  position: relative;
+  z-index: -9;
+  height: 100vh;
+}
+.bg::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-image: radial-gradient(
+    rgba(22, 22, 22, 0.596),
+    rgba(0, 0, 0, 0.836),
+    rgb(0, 0, 0)
+  );
+  opacity: 0.5;
+}
+.bg-login img {
+  position: absolute;
+  z-index: -9;
+  width: 100%;
+  height: 100vh;
+}
+.form-datadiri {
+  position: absolute;
+  top: 50%;
+  left:  50%;
+  transform: translate(-50%,-50%);
+  padding: 1rem 1.5rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.header-addData {
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: rgb(238, 238, 238);
+}
+
+.form-date label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: whitesmoke;
+}
+
+.form-date input {
+  cursor: pointer;
+  height: 2rem;
+  width: 100%;
+}
+
+.btn-tambah {
+  padding: 0.4rem;
+  color: whitesmoke;
+  font-weight: 500;
+  font-size: 1.2rem;
+  border: 0px solid green;
+  border-radius: 1rem;
+}
