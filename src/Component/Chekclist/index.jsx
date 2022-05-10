@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {TextField} from "@mui/material";
 // import "./userCss/Login.css";
@@ -43,6 +43,9 @@ const Cheklist = () => {
    console.log('berhasil')
   };
 
+  useEffect(() => {
+    getData()
+  },[]);
   return (
     <>
       <Container>
