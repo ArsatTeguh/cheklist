@@ -9,6 +9,7 @@ const Cheklist = () => {
   const [tambahData, setTambahData] = React.useState({
     name: "",
   });
+  const [id, setId] = React.useState();
 
   const getData = async () => {
     setToken(
@@ -21,8 +22,15 @@ const Cheklist = () => {
         },
       }
     );
-    console.log(response.data);
+    console.log(response.data.data);
+    setId(response.data.data)
   };
+
+  const GetId = () => {
+  const newId = id.map((data) => data.id)
+  console.log(newId[0])
+  return newId[0]
+  }
 
   const handler = (e) => {
     const newDataUser = { ...tambahData };
@@ -43,6 +51,16 @@ const Cheklist = () => {
    console.log('berhasil')
   };
 
+  const DeleteData = async () => {
+    await axios.delete(`http://94.74.86.174:8080/api/checklist/${GetId()}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+   );
+   console.log('berhasil')
+  }
+
   useEffect(() => {
     getData()
   },[]);
@@ -54,6 +72,12 @@ const Cheklist = () => {
         </Button>
         <Button onClick={TambahData} className="mt-3" variant="warning">
           tambah data
+        </Button>
+        <Button onClick={GetId} className="mt-3" variant="warning">
+          getId
+        </Button>
+        <Button onClick={DeleteData} className="mt-3" variant="warning">
+          Delete Data
         </Button>
 
         <TextField
