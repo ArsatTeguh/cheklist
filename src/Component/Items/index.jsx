@@ -10,6 +10,7 @@ const Items = () => {
     name: "",
   });
   const [id, setId] = React.useState();
+  const [idItems, setIdItems] = React.useState();
 
 
   const getData = async () => {
@@ -44,8 +45,13 @@ const Items = () => {
       }
     );
     console.log(response.data);
+    setIdItems(response.data.data)
   };
 
+  const GetIdItems = () => {
+    const newId = idItems.map((data) => data.id)
+    return newId[0]
+    }
 
   const handler = (e) => {
     const newDataUser = { ...tambahData };
@@ -66,6 +72,67 @@ const Items = () => {
    console.log('berhasil item baru  ' + tambahData.name)
   };
 
+  // ======================== itemsBy ID =============================
+  const getItemsById = async () => {
+    setToken(
+      "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6W119.i2OVQdxr08dmIqwP7cWOJk5Ye4fySFUqofl-w6FKbm4EwXTStfm0u-sGhDvDVUqNG8Cc7STtUJlawVAP057Jlg"
+    );
+    const response = await axios.get(`http://94.74.86.174:8080/api/checklist/${GetId()}/item/${GetIdItems()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+  };
+
+
+  const UpdateStatuSItems = async () => {
+    setToken(
+      "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6W119.i2OVQdxr08dmIqwP7cWOJk5Ye4fySFUqofl-w6FKbm4EwXTStfm0u-sGhDvDVUqNG8Cc7STtUJlawVAP057Jlg"
+    );
+    const response = await axios.put(`http://94.74.86.174:8080/api/checklist/${GetId()}/item/${GetIdItems()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+  };
+
+
+  const DeleteStatuSItems = async () => {
+    setToken(
+      "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6W119.i2OVQdxr08dmIqwP7cWOJk5Ye4fySFUqofl-w6FKbm4EwXTStfm0u-sGhDvDVUqNG8Cc7STtUJlawVAP057Jlg"
+    );
+    const response = await axios.delete(`http://94.74.86.174:8080/api/checklist/${GetId()}/item/${GetIdItems()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+  };
+
+
+  const RenameStatuSItems = async () => {
+    setToken(
+      "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6W119.i2OVQdxr08dmIqwP7cWOJk5Ye4fySFUqofl-w6FKbm4EwXTStfm0u-sGhDvDVUqNG8Cc7STtUJlawVAP057Jlg"
+    );
+    const response = await axios.put(`http://94.74.86.174:8080/api/checklist/${GetId()}/item/${GetIdItems()}`,{
+      itemName: tambahData.name 
+     },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response.data);
+  };
 
   useEffect(() => {
     getData()
@@ -92,6 +159,21 @@ const Items = () => {
           onChange={(e) => handler(e)}
           value={tambahData.name}
         />
+        <br />
+        <br />
+        <br />
+        <Button onClick={getItemsById} className="mt-3" variant="warning">
+          get items by Id
+        </Button>
+        <Button onClick={UpdateStatuSItems} className="mt-3" variant="warning">
+          update items by Id
+        </Button>
+        <Button onClick={DeleteStatuSItems} className="mt-3" variant="warning">
+          Delete items by Id
+        </Button>
+        <Button onClick={RenameStatuSItems} className="mt-3" variant="warning">
+          Rename items by Id
+        </Button>
       </Container>
     </>
   );
